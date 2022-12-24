@@ -1,3 +1,4 @@
+//Leaky Bucket Algorithm 
 #include<stdio.h>
 #include<stdlib.h>
 #define MIN(x,y) (x,y)?y:x
