@@ -25,7 +25,7 @@ int main()
         }
         else if(a[i]==ed)
         {
-            b[j]==ed;
+            b[j]=ed;
             j++;
         }
     }
