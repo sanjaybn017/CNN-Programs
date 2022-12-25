@@ -1,7 +1,7 @@
 //Leaky Bucket Algorithm 
 #include<stdio.h>
 #include<stdlib.h>
-#define MIN(x,y) (x,y)?y:x
+#define MIN(x,y) x>y?y:x
 int main()
 {
     int orate,drop=0,cap,x,count=0,inp[10]={0},i=0,nsec,ch;
