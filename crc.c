@@ -39,7 +39,7 @@ int main()
     //recevier side
     char r[60],rem1[60];
     int ebit = 0,flag = 0;
-    printf("enter the received message\n");
+    printf("\nEnter the received message\n");
     scanf("%s",r);
     if(strlen(b) == strlen(r))
         for(int i=0;i<strlen(r);i++)
