@@ -1,28 +1,46 @@
 #include<stdio.h>
-#include<conio.h>
-#include<stdlib.h>
-void main()
+#include<unistd.h>
+int i=0,pak[100];
+int receiver();
+int main()
 {
-    int i=1,j=1,noframes=10,x,x1;
-    printf("Number of frames to be sent is %d",noframes);
-    while(noframes>0)
+    int n,time;
+    printf("Enter the number of packets to be transmitted \n");
+    scanf("%d",&n);
+    printf("Enter the data contained in packets \n");
+    for(int j=0;j<n;j++)
+        scanf("%d",&pak[j]);
+    printf("Enter the waiting time for receiving ACK \n");
+    scanf("%d",&time);
+    while(i<n)
     {
-        printf("Sending frame %d",i);
-        x = rand()%10;
-        if(x%10==0)
+        printf("Sender sent packet:%d = %d\n",i+1,pak[i]);
+        printf("sender waiting for ACK and timer on\n");
+        sleep(time);
+        if(!receiver())
+            printf("Correct ACK received and packet transmission is successfull \n\n ");
+        else
         {
-            for(x1=1;x1<2;x1++)
-            {
-                printf("\n waiting for %d seconds\n",x1);
-                sleep(x1);
-            }
-            printf("\n resending frame %d \n",i);
-            x= rand()%10;
+            printf("timeout occurred\n correct Ack not received and packet transmisssion  failed\n retransmit the packet\n\n");
+            continue;
         }
-        printf("\n Acknowledge for frame %d \n",j);
-        noframes=noframes-1;
-        i++;
-        j++;
+        i++;    
     }
-    printf("\n End of stop and wait protocol");
+    printf("\n data transmission is completed\n");
+}
+int receiver()
+{
+    int rpak;
+    printf("Enter the packet received \n");
+    scanf("%d",&rpak);
+    if(rpak == pak[i])
+    {
+        printf("packet received correctly\n");
+        return 0;
+    }
+    else
+    {
+        printf("packet received id corupted\n");
+        return 1;
+    }
 }
